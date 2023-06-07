@@ -1,5 +1,5 @@
 import os
-
+import imagesize
 
 # @func:获取目录下所有文件（递归）
 # @sPath:路径
@@ -101,3 +101,43 @@ def replaceFileTxtByIndex(sPath, txt, index):
 # @sPath:路径
 def isExist(sPath):
     return os.path.exists(sPath)
+
+
+# @func:判断是否是文件夹
+# @sPath:路径
+def isDir(sPath):
+    return os.path.isdir(sPath)
+
+
+# @func:判断是否是文件
+# @sPath:路径
+def isFile(sPath):
+    return os.path.isfile(sPath)
+
+
+# @func:获取指定目录下的所有文件
+def getAllFile(filePath):
+    tempList = []
+    for m_root, m_dirNames, m_files in os.walk(filePath):
+        for child_file_name in m_files:
+            sPath = os.path.join(m_root, child_file_name)
+            tempList.append(sPath)
+    return tempList
+
+
+# @func:获取指定目录下指定后缀的所有文件
+def getAllFileBySuffix(filePath, suffix):
+    tempList = []
+    for m_root, m_dirNames, m_files in os.walk(filePath):
+        for child_file_name in m_files:
+            n, e = os.path.splitext(child_file_name)
+            if e.lower() == suffix:
+                sPath = os.path.join(m_root, child_file_name)
+                tempList.append(sPath)
+    return tempList
+
+
+# @func：获取图片宽高
+def getImageSize(imgPath):
+    w, h = imagesize.get(imgPath)
+    return w,h
