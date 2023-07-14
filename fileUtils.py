@@ -1,4 +1,5 @@
 import os
+import shutil
 import imagesize
 
 # @func:获取目录下所有文件（递归）
@@ -141,3 +142,28 @@ def getAllFileBySuffix(filePath, suffix):
 def getImageSize(imgPath):
     w, h = imagesize.get(imgPath)
     return w,h
+
+
+# @func:创建文件夹
+# @sPath:路径
+def createFile(fPath):
+    os.makedirs(fPath)
+
+
+# @func:删除文件夹及其子文件
+# @sPath:路径
+def removeDirectory(fPath):
+    shutil.rmtree(fPath)
+
+
+# @func:删除单个文件
+# @sPath:路径
+def removeFile(fPath):
+    os.remove(fPath)
+
+
+# @func:拷贝+重命名
+# @oldPath:老文件路径
+# @newPath:新文件路径
+def copyAndReNameFile(oldPath, newPath):
+    shutil.copy(oldPath, newPath)
